@@ -1,0 +1,15 @@
+README.txt
+setup.cfg
+setup.py
+ageliaco/__init__.py
+ageliaco.schoolkit.egg-info/PKG-INFO
+ageliaco.schoolkit.egg-info/SOURCES.txt
+ageliaco.schoolkit.egg-info/dependency_links.txt
+ageliaco.schoolkit.egg-info/entry_points.txt
+ageliaco.schoolkit.egg-info/namespace_packages.txt
+ageliaco.schoolkit.egg-info/not-zip-safe
+ageliaco.schoolkit.egg-info/paster_plugins.txt
+ageliaco.schoolkit.egg-info/requires.txt
+ageliaco.schoolkit.egg-info/top_level.txt
+ageliaco/schoolkit/__init__.py
+ageliaco/schoolkit/tests.py
