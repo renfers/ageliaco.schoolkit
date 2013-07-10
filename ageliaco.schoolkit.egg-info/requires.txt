@@ -1,3 +1,9 @@
 setuptools
 plone.app.dexterity [grok, relations]
+plone.app.registry
+plone.app.z3cform
 plone.namedfile [blobs]
+collective.js.jqueryui
+five.grok
+z3c.jbot
+collective.monkeypatcher

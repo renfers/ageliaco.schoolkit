@@ -33,5 +33,16 @@
       />
 
   <!-- -*- extra stuff goes here -*- -->
+<include package="collective.autopermission" />
+<permission id="ageliaco.schoolkit.AddSuperContent" title="ageliaco.schoolkit: Add Super Content" />
 
+    <include package="plone.app.registry" />
+
+    <!-- Control panel -->
+    <browser:page
+        name="schoolkit-settings"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".settings.SchoolkitSettingsControlPanel"
+        permission="cmf.ManagePortal"
+        />
 </configure>

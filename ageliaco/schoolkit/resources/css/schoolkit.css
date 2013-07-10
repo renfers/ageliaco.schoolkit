@@ -1,0 +1,572 @@
+/*-----------------------------*/
+/*VITRINES DANS SLIDES*/
+/*-----------------------------*/
+
+/*GESTION DES TEXTES DANS LES VITRINES DE PAGE1*/
+/*attention, ces contenus sont aussi repris dans la page /ecran */
+.titre_portletvitrine
+{
+ font-size: 1.4em;
+ color: #00539B;
+ border-bottom-color: #00539B;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+ margin-top: 22px;
+ margin-bottom: 10px;
+ padding: 5px 5px 5px 0px;
+/*background:#cee1f0;*/
+}
+
+.contenu_vitrine
+{
+ background-color: #cee1f0;
+border-bottom-left-radius: 10px;
+border-bottom-right-radius:10px;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+width: 95%;
+padding:10px 10px 10px 10px; 
+text-align: left;
+}
+
+#content ul {
+    margin-left : 0;
+}
+
+.contenu_vitrine{
+    overflow: auto;
+}
+
+
+
+/*GESTION DES TEXTES DANS LES VITRINES DE PAGE1*/
+/*attention, ces contenus sont aussi repris dans la page /ecran */
+
+.titre_portletvitrine, .titre_portletbestof
+{
+ font-size: 1.4em;
+ color: #00539B;
+ border-bottom-color: #00539B;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+ margin-top: 22px;
+ margin-bottom: 10px;
+ padding: 5px 5px 5px 0px;
+/*background:#cee1f0;*/
+}
+
+.vitrineimage
+{
+float: left;
+
+margin-right: 15px;
+}
+
+.vitrinetexte
+{
+ font-size: 140%;
+}
+
+.titre_portletbestof
+{
+ padding-bottom: 30px;
+}
+
+.bestoftexte, .bestoftexte-cacher
+{
+ font-size: 120%;
+}
+
+.contenu_portletvitrine, .contenu_bestof
+{
+border-bottom-left-radius: 10px;
+border-bottom-right-radius:10px;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+padding: 5px 5px 5px 5px;
+margin-top: 5px;
+}
+
+.contenu_portletvitrine
+{
+ background-color: #f1e7de;
+}
+
+.contenu_bestof
+{
+border: solid 1px;
+border-bottom-color:#00539B;
+border-top-color:#00539B;
+border-left-color:#00539B;
+border-right-color:#00539B;
+}
+
+
+#bloc-news-events, #bloc-news, #bloc-events
+{
+    display : bloc;
+    margin-top : 30px;
+}
+
+
+/*STYLES POUR LES SLIDES*/ 
+
+/*titres des deux slides*/ 
+.p1_vitrine, .p1_bestof
+{
+float:left;
+margin-top: -35px;
+max-width: 500px;
+}
+.p1_vitrine
+{
+width:50%;
+margin-right: 3%;
+}
+.p1_bestof
+{
+width:45%; 
+
+}
+
+
+
+
+
+
+#slider-container
+{
+    width: 420px;
+    max-width: 500px;
+    position : relative;
+/*    margin: auto; */
+    margin: 0; 
+    padding: 0 0px;
+    border: 0;
+float:left;
+}
+
+#slider, #slider li, #easySlider-goToButtons
+{ 
+    width: 420px;
+    max-width: 500px;
+}
+
+
+
+#slider2, #slider2 li, #easySlider-goToButtons, #easySlider-goToButtons2
+{ 
+  width: 420px;
+    max-width: 500px;
+  max-height: 400px;
+}
+
+.slide-ecran-image {
+  display:block;
+  width: 420px;
+    max-width: 500px;
+  margin:auto;
+}
+
+.slide-ecran-content {
+  width: 380px;
+    max-width: 500px;
+
+font-size: 120%;
+  margin-top:25px;
+/*  line-height: 0em;  */
+
+}
+
+   
+.ecran-slide {
+  width: 380px;
+    max-width: 500px;
+}
+
+/*
+.ecran-slide h1 {
+   border-bottom: 1px solid #E6D417;
+}
+
+.ecran-slide h1, h2{
+   font-size:2em;
+   line-height: 1em;
+}
+
+.ecran-slide h3, h4, h5 {
+   font-size:1.5em;
+   line-height: 1em;
+}
+*/
+
+#slider-container
+{
+    border: 0px solid #B8B8B8; 
+    margin: auto;
+    padding: 5px 5px 5px 5px;
+}
+
+
+/*couleur de fond pour le slider
+#slider, #slider2
+{
+background-color : #cee1f0;
+}
+*/ 
+
+div.news-slide {
+    padding: 15px;
+}
+img.news-slide-image {
+    float: right;
+    padding-top: 10px;
+}
+#slider-container #parent-fieldname-title, #slider-container2 #parent-fieldname-title
+ {
+    border-bottom: 0 none;
+    display: block;
+    padding: 6px 10px;
+}
+#slider ul, #slider li, #slider2 ul, #slider2 li
+ {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+#slider, #slider li, #slider2, #slider2 li
+ {
+    overflow: hidden;
+}
+
+.slider-text {
+    display: block;
+    float: left;
+    padding: 10px;
+}
+.slider-image {
+    display: block;
+    float: right;
+    margin-right: 25px;
+}
+
+
+#easySlider-goToButtons a.active, #easySlider-goToButtons2 a.active
+{
+    background: none repeat scroll 0 0 #205c90;
+    border: 1px solid black;
+    color: white !important;
+}
+#easySlider-goToButtons, #easySlider-goToButtons2
+{
+    line-height: 35px;
+    position: relative;
+    text-align: left;
+margin-left; -20px;
+    top: -50px;
+}
+
+
+#leftb {
+    margin-right: 4px;
+display: none;
+}
+#easySlider-goToButtons #leftb a, #easySlider-goToButtons2 #leftb a
+{
+    background: url("../images/prevII.gif") no-repeat scroll center center transparent;
+    border: 0 none;
+}
+#easySlider-goToButtons #rightb a, #easySlider-goToButtons2 #rightb a
+{
+    background: url("../images/nextII.gif") no-repeat scroll center center transparent;
+    border: 0 none;
+}
+#easySlider-goToButtons a, #easySlider-goToButtons2 a
+{
+    background: white;
+    border: 1px solid #B8B8B8;
+    color: #494949;
+    font: bold 12px "Lucida Grande",Lucida,Verdana,sans-serif;
+    padding: 4px 8px;
+    text-decoration: none;
+}
+div#pauseplay {
+    cursor: pointer;
+    display: block;
+    height: 20px;
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    width: 20px;
+}
+div#pauseplay.pause {
+    background: url("../images/sliderpause.png") no-repeat scroll 0 0 transparent;
+}
+div#pauseplay.play {
+    background: url("../images/sliderplay.png") no-repeat scroll 0 0 transparent;
+}
+
+.espacesousslider
+{
+margin-top:35px;
+margin-bottom:35px;
+}
+
+
+/* STYLES POUR L'ACCORDION BEST-OF */
+
+
+
+#myAccordion li {
+    list-style: none;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #cee1f0;
+    background-image: url("/ecole-v2/++resource++jquery-ui-themes/sunburst/images/ui-bg_flat_50_75ad0a_40x100.png-non");
+    background-origin: padding-box;
+    background-position: 50% 50%;
+    background-repeat: repeat-x;
+    background-size: auto auto;
+    border-bottom-color: #CCCCCC;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    border-left-color-ltr-source: physical;
+    border-left-color-rtl-source: physical;
+    border-left-color-value: #CCCCCC;
+    border-left-style-ltr-source: physical;
+    border-left-style-rtl-source: physical;
+    border-left-style-value: solid;
+    border-left-width-ltr-source: physical;
+    border-left-width-rtl-source: physical;
+    border-left-width-value: 1px;
+    border-right-color-ltr-source: physical;
+    border-right-color-rtl-source: physical;
+    border-right-color-value: #CCCCCC;
+    border-right-style-ltr-source: physical;
+    border-right-style-rtl-source: physical;
+    border-right-style-value: solid;
+    border-right-width-ltr-source: physical;
+    border-right-width-rtl-source: physical;
+    border-right-width-value: 1px;
+    border-top-color: #CCCCCC;
+    border-top-style: solid;
+    border-top-width: 1px;
+    color: #00539b;
+    font-weight: bold;
+font-size: 140%;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #cee1f0;
+    background-image: url("/ecole-v2/++resource++jquery-ui-themes/sunburst/images/ui-bg_flat_45_205c90_40x100.png-non");
+    background-origin: padding-box;
+    background-position: 50% 50%;
+    background-repeat: repeat-x;
+    background-size: auto auto;
+    border-bottom-color: #CCCCCC;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    border-left-color-ltr-source: physical;
+    border-left-color-rtl-source: physical;
+    border-left-color-value: #CCCCCC;
+    border-left-style-ltr-source: physical;
+    border-left-style-rtl-source: physical;
+    border-left-style-value: solid;
+    border-left-width-ltr-source: physical;
+    border-left-width-value: 1px;
+    border-right-color-ltr-source: physical;
+    border-right-color-rtl-source: physical;
+    border-right-color-value: #CCCCCC;
+    border-right-style-ltr-source: physical;
+    border-right-style-rtl-source: physical;
+    border-right-style-value: solid;
+    border-right-width-ltr-source: physical;
+    border-right-width-rtl-source: physical;
+    border-right-width-value: 1px;
+    border-top-color: #CCCCCC;
+    border-top-style: solid;
+    border-top-width: 1px;
+    color: #00539b;
+    font-weight: bold;
+font-size: 140%;
+
+}
+
+
+/* STYLES POUR LES LIENS A GAUCHE DES DIAS P1 */
+
+.titres-dias
+{
+margin-bottom:-25px;
+}
+
+table.pre-theme
+{
+margin-left:26px;
+margin-bottom:-25px;
+}
+
+.theme1, .theme2, .theme3, .theme4, .theme5, .theme6, .theme7
+{
+width:100px;	
+height:30px;
+margin-top:1px;
+padding-top:5px;
+padding-left:5px;
+} 
+
+.theme1
+{
+background-color:#205c90;
+color:#ffffff;	
+} 
+.theme2
+{
+background-color:#8899aa;	
+} 
+.theme3
+{
+background-color:#b6c3d4;	
+} 
+.theme4
+{
+background-color:#cee1f0;	;
+} 
+.theme5
+{
+background-color:#cccccc;	;
+} 
+.theme6
+{
+background-color:#dddddd;	;
+} 
+.theme7
+{
+background-color:#eeeeee;	;
+} 
+
+
+/*-----------------------------*/
+/*FIN DE VITRINES DANS SLIDES*/
+/*-----------------------------*/
+
+
+
+
+
+/*-----------------------------*/
+/*STYLES POUR LES PORTLETS ACTU ET EVENTS SOUS SLIDES P1 */ 
+/*-----------------------------*/
+#viewlet-below-content-title, #parent-fieldname-description
+{
+display:none;
+}
+
+
+
+/*portlet actus et even en page 1*/ 
+.portletNews
+{
+display: block; 
+clear:left; width:50%; 
+float:left;
+}
+.portletEvents
+{
+display: block; 
+padding-left: 20px;
+background-color: transparent;
+width:45%; 
+float:left;
+}
+
+/*GESTION DE TAILLES DE PAGE1*/
+/*attention : une partie des styles sont gérés directement via la template homepage*/
+/*attention, ces contenus doivent aussi être repris dans la page /ecran */
+
+.titre_portletp1
+{
+ font-size: 180%;
+ margin-bottom: 0;
+ color: #00539B;
+}
+
+.titre_actu, .titre_actu a:link
+{
+ font-size: 130%;
+ margin-left: 0px;
+ padding-top: 10px;
+}
+
+.lien_ttesactus a:link
+{
+ font-size: 150%;
+}
+
+/* pour resserer les actus */
+dl.portlet dd.portletItem, dl.portlet dd.portletFooter, dl.portletError dd 
+{
+    padding-bottom: 0;
+}
+
+.titre_eventp1, .portletItemDetails_eventp1
+{
+ font-size: 140%;
+}
+
+.ical
+{
+float: right;
+}
+
+.p1_events_ical
+{
+float:right;
+}
+
+/*-----------------------------*/
+/*FIN DE STYLES POUR LES PORTLETS ACTU ET EVENTS SOUS SLIDES P1 */ 
+/*-----------------------------*/
+
+
+
+
+
+/*-----------------------------*/
+/*DIVERS */ 
+/*-----------------------------*/
+
+/*gestion des arrondis de blocs*/ 
+.connexion, #slider, .tabs a, .panes > div
+{
+border-radius: 5px 5px 5px 5px;
+}
+
+
+/*-----------------------------*/
+/*FIN DE DIVERS */ 
+/*-----------------------------*/
+

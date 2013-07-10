@@ -12,4 +12,6 @@ ageliaco.schoolkit.egg-info/paster_plugins.txt
 ageliaco.schoolkit.egg-info/requires.txt
 ageliaco.schoolkit.egg-info/top_level.txt
 ageliaco/schoolkit/__init__.py
+ageliaco/schoolkit/homepage.py
+ageliaco/schoolkit/settings.py
 ageliaco/schoolkit/tests.py

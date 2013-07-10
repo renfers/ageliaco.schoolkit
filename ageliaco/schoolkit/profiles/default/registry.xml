@@ -1,0 +1,18 @@
+<registry>
+    <records interface="ageliaco.schoolkit.settings.ISettings" prefix="ageliaco.schoolkit.settings.ISettings">
+        <!-- Set default values -->
+
+        <!-- Leave to empty string -->
+        <!-- <value key="adminLanguage"></value> -->
+
+
+      <value key="server_uri">ldaps://ldapedu.ge.ch:636</value>
+      <value key="ldap_manager">cn=TCNEELCMSAFG,ou=CMS,ou=TCN,dc=EEL</value>
+      <value key="manager_password"></value>
+      <value key="ldap_ou_groups">ou=UO0872,ou=PO,ou=EEL,o=GRP,dc=EEL</value>
+      <value key="ldap_ou_courses">ou=COURS</value>
+      <value key="ldap_ou_classes">ou=CLASSES</value>
+      <value key="ldap_ou_disciplines">ou=DISCIPLINES,ou=ENSEIGNANTS</value>
+    </records>
+</registry>
+

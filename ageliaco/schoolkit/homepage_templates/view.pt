@@ -1,0 +1,727 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+ <head>
+    <metal:block1 fill-slot="style_slot">
+     <tal:css  tal:define="navroot context/@@plone_portal_state/navigation_root_url">
+        <link rel="stylesheet" href="css/schoolkit.css"
+         tal:attributes="href string:${navroot}/++resource++ageliaco.schoolkit/css/schoolkit.css"
+         >
+     </tal:css>
+    </metal:block1>
+    <metal:block2 fill-slot="javascript_head_slot" >
+     <tal:js  tal:define="navroot context/@@plone_portal_state/navigation_root_url">
+        <script type="text/javascript"  
+                tal:attributes="src string:${navroot}/++resource++ageliaco.schoolkit/javascript/slider.js">
+        </script>
+                
+     </tal:js>
+    </metal:block2>
+ 
+</head>
+
+<body>
+
+
+<metal:content-core fill-slot="content-core">
+  
+
+<!-- homepage_view sous le contenu de la page -->
+<script type="text/javascript">
+	$(document).ready(function(){	
+		$("#slider").easySlider({
+	    speed : 800,
+	    vertical: false,
+	    auto : true,
+	    pause : 15000,
+	    continuous : true,
+	    navigation_type: 'Navigation Buttons',
+	    effect: 'Slide',
+	    fadeNavigation: false
+                });
+	});
+
+function timedRefresh() {
+ setTimeout("location.reload(true);",600000);
+}
+window.onload=timedRefresh
+ </script>
+
+
+
+
+
+
+    <tal:block 
+            tal:define="portal context/@@plone_portal_state/portal;
+                        slides_path    python: '/'.join(context.getPhysicalPath())+'/slides';
+                        isAnonymous     here/portal_membership/isAnonymousUser;
+                        pages           python: container.portal_catalog( 
+                                            path={'query': slides_path, 'depth': 1}, 
+                                            sort_on='Date',
+                                            sort_order='reverse',
+                                            review_state='published');
+                        accordion_path   python: '/'.join(context.getPhysicalPath())+'/accordion';
+                        souflets        python: container.portal_catalog( 
+                                            path={'query': accordion_path, 'depth': 1}, 
+                                            sort_on='Date',
+                                            sort_order='reverse',
+                                            review_state='published');">
+
+
+<style type="text/css"
+        tal:define="nombre_souflets python:len(souflets);
+                    souflet_height python:str(context.slider_height - (nombre_souflets * 31)-9);
+                    height python:str(context.slider_height)"
+        tal:content="string:
+    .ui-accordion .ui-accordion-content {
+        height: ${souflet_height}px;
+    }
+    #slider, #slider li, #slider-container, #slider2, #slider2 li
+    { 
+        height:${height}px;
+    }
+    #slider-container 
+    {
+        width : 95%;
+    }">
+</style>
+
+
+<div 
+>
+<!-- début vitrine haut p1 gauche -->
+<div class="p1_vitrine"
+    >
+
+<dl class="portlet portletNews-no"
+    i18n:domain="plone"
+    >
+
+   
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span  class="titre_portletp1" tal:content="context/slides/Title">En vitrine</span>
+        <span class="portletTopRight"></span>
+
+<!--AJOUT D'UNE TABLE POUR ARRIVER A AJOUTER LE LIEN RSS A DROITE ... 
+<table width=100%  style="margin-bottom:2px;">     
+<tr>
+
+<td  class="titre_portletp1">
+<span tal:content="context/slides/Title">
+En vitrine</span>
+<span class="portletTopRight"></span>
+</td>
+<td align=right >
+
+</td>
+
+</tr>
+</table>
+-->
+    </dt>
+
+<div class="contenu_vitrine"
+>
+
+
+
+
+<!-- LA VARIABLE CONTEXT PERMET D'ATTRAPER QQCH QUI EST AU MEME NIVEAU,
+DANS L'API DE PLONE getFolderContents VA RECUPERER TOUS LES CONTENUS PRESENTS DANS LE DOSSIER, 
+ET ON PEUT Y LIRE DES INFOS SUR DES PROPRIETES QUI Y SONT ATTACHEES 
+ON DEFINIT LE REPERTOIRE DE BASE COMME "vitrines" -->
+
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES BRAINS ET NON LES OBJETS + IL FAUT FILTRER SUR LES ELEMENTS PUBLIES SEULEMENT " -->
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES BRAINS ET NON LES OBJETS + IL FAUT FILTRER SUR LES ELEMENTS PUBLIES SEULEMENT " -->
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES BRAINS ET NON LES OBJETS + IL FAUT FILTRER SUR LES ELEMENTS PUBLIES SEULEMENT " -->
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES BRAINS ET NON LES OBJETS + IL FAUT FILTRER SUR LES ELEMENTS PUBLIES SEULEMENT " -->
+
+
+        <!-- début slide -->
+                           
+    <div id="slider-container"
+    >
+    <div id="slider">
+        <ul>
+
+        <!-- début de la boucle LI -->
+
+        <li tal:repeat="page pages" tal:condition="python: len(pages)">
+        <div class="ecran-slide">
+
+         <h1 class="documentFirstHeading" 
+         tal:content="page/Title" />
+
+
+        <!--
+         <a href=""
+             tal:attributes="href page/getURL;
+                             title page/Description">
+             <div class="titre_actu" tal:replace="page/pretty_title_or_id"/>
+         </a>
+        -->
+
+         <div class="slide-ecran-content" >
+
+           <div class="vitrineimage" tal:define="item_page page/getObject">
+           <span tal:replace="structure python: path('nocall:item_page/tag')(scale='thumb', css_class='image_tile')" />
+           </div>
+
+           <div class="vitrinetexte"
+            tal:define="pageObj page/getObject" 
+            tal:content="structure pageObj/getText">
+           </div>
+
+        </div><!-- slide-ecran-content -->
+
+        </div><!-- ecran-slide -->
+        </li>
+
+        </ul>
+        <!-- fin de la boucle -->
+
+
+
+    </div></div> <!-- fin du div slider et slider-container -->
+
+<!-- fin slide -->
+</div>
+  
+</dl>
+
+</div>
+<!--fin vitrine haut gauche p1-->
+
+
+
+
+<!-- début best-of école-->
+
+<!--on ajoute une condition pour que le slider ne soit visible que par les anonymes -->
+
+
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES BRAINS ET NON LES OBJETS + IL FAUT FILTRER SUR LES ELEMENTS PUBLIES SEULEMENT ET FILTRER AUSSI SUR LES SEULS DOCUMENTS" -->
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES BRAINS ET NON LES OBJETS + IL FAUT FILTRER SUR LES ELEMENTS PUBLIES SEULEMENT ET FILTRER AUSSI SUR LES SEULS DOCUMENTS" -->
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES BRAINS ET NON LES OBJETS + IL FAUT FILTRER SUR LES ELEMENTS PUBLIES SEULEMENT ET FILTRER AUSSI SUR LES SEULS DOCUMENTS" -->
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES BRAINS ET NON LES OBJETS + IL FAUT FILTRER SUR LES ELEMENTS PUBLIES SEULEMENT ET FILTRER AUSSI SUR LES SEULS DOCUMENTS" -->
+
+
+<div class="p1_bestof" tal:condition="python: isAnonymous and len(souflets)">
+
+<dl class="portlet portletEvents-no"
+    i18n:domain="plone">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span  class="titre_portletp1" tal:content="context/accordion/Title">Dans notre école</span>
+        <span class="portletTopRight"></span>
+
+<!--AJOUT D'UNE TABLE POUR ARRIVER A AJOUTER LE LIEN RSS A DROITE ... 
+<table width=100%  style="margin-bottom:2px;">     
+<tr>
+
+<td  class="titre_portletp1">
+<span tal:content="context/accordion/Title">
+Dans notre école</span>
+<span class="portletTopRight"></span>
+</td>
+<td align=right >
+
+</td>
+
+</tr>
+</table>
+-->     
+    </dt>
+
+
+
+
+<!-- début accordion -->
+
+
+<ul  id="myAccordion"
+    tal:define="nombre_souflets python:len(souflets)"
+>
+
+<!-- début de la boucle LI -->
+
+<li tal:repeat="page souflets">
+
+<h3
+tal:content="page/Title"
+>
+
+</h3>
+<div>
+
+
+<!--
+ <h1 class="documentFirstHeading" 
+ tal:content="page/Title"
+ tal:condition="python: page.portal_type=='Document'" />
+-->
+
+
+ <div class="text" 
+    tal:define="pageObj page/getObject" >
+    <span tal:condition="exists:pageObj/image_thumb"
+        tal:replace="structure python: path('nocall:pageObj/tag')(scale='thumb', css_class='image_tile')" />
+    <span  tal:replace="structure pageObj/getText"/>
+
+</div>
+</div>
+</li>
+
+<!-- fin de la boucle -->
+</ul>
+<!-- fin accordion-->
+
+</dl>
+</div>
+
+
+<!-- fin "dans notre école"-->
+
+
+<div class="p1_bestof" tal:condition="python: not isAnonymous" >
+
+<dl class="portlet portletEvents-no"
+    i18n:domain="plone">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span  class="titre_portletp1">Cours de <i  tal:content="view/member"/></span>
+        <span class="portletTopRight"></span>
+
+<!--AJOUT D'UNE TABLE POUR ARRIVER A AJOUTER LE LIEN RSS A DROITE ... 
+<table width=100%  style="margin-bottom:2px;">     
+<tr>
+
+<td  class="titre_portletp1">
+<span>
+Accès direct aux cours</span>
+<span class="portletTopRight"></span>
+</td>
+<td align=right >
+
+</td>
+
+</tr>
+</table>
+-->     
+    </dt>
+<div class="contenu_bestof">  
+
+
+<div>  
+<h2 class="titre_portletactu">
+<tal:with-fullname define="membership context/portal_membership;info python:membership.getMemberInfo(user.getId()); fullname info/fullname">
+   Bienvenue <span class="name" tal:content="fullname" />
+</tal:with-fullname>
+</h2>
+
+<ul tal:define="groups view/groupes">
+    <tal:allgroups repeat="group groups">
+
+        <li ><b tal:content="group"/></li>
+    </tal:allgroups>
+</ul>
+
+<!--
+<p > Cliquer sur le lien ci-dessous pour accéder directement à l'espace de partage de la discipline : <a href="./espace-pedagogique/disciplines/maths">Mathématiques</a></p>
+
+<p> Cliquer sur le lien ci-dessous pour accéder directement à l'espace de partage du cours </p>
+
+<p><a href="./espace-pedagogique/cours/1ma2.df07">1Ma2.DF07</a></p>
+<p>2Ma1.DF02 - 2Ma1.DF03 - 2Ma1.DF03</p>
+<p>3Ma2.DF05 - 4Ma1.DF02 - 2Ma1.DF03</p>
+<p>4Ma1.DF03</p>
+
+-->
+
+<div class="vitrinetexte"  tal:define="classes_cours_disciplines view/classes_cours_disciplines;
+                                        classes python:classes_cours_disciplines[0];
+                                        cours   python:classes_cours_disciplines[1];
+                                        disciplines   python:classes_cours_disciplines[2]">
+
+
+<tal:classe condition="python: classes==0">
+<h2>Classe</h2>
+<ul>
+<tal:groupes repeat="classe classes">
+<li tal:content="classe"/>
+</tal:groupes>
+</ul>
+</tal:classe>
+<tal:cours1 condition="cours">
+<h2>Cours</h2>
+<ul>
+<tal:cours repeat="groupe cours">
+<li tal:content="groupe"/>
+</tal:cours>
+</ul>
+</tal:cours1>
+<tal:disciplines condition="view/isCollaborateur">
+<h2>Disciplines</h2>
+<ul>
+<tal:groupes repeat="groupe disciplines">
+<li tal:content="groupe"/>
+</tal:groupes>
+</ul>
+</tal:disciplines>
+
+</div>
+<!-- coucou -->
+
+</div>
+
+
+<a class="external-link" href="logout">
+<div class="connexion" style="text-align: center; ">
+Déconnexion
+</div>
+</a>
+
+</div>
+   
+
+
+</dl>
+</div>
+
+</div>
+
+<!-- fin "liste des cours"-->
+</tal:block>
+
+
+<style  type="text/css">
+</style>
+
+<script type="text/javascript">
+//function to execute when doc ready
+
+$(document).ready(function(){	//set custom easing
+    var accOpts = {
+        animated: "bounceslide"
+    }
+    //turn specified element into an accordion
+    $("#myAccordion").accordion(accOpts);
+});
+</script>
+
+
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES NEWS QUI SONT DANS LE DOSSIER /NEWS ET PAS AILLEURS DANS LE SITE" -->
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES NEWS QUI SONT DANS LE DOSSIER /NEWS ET PAS AILLEURS DANS LE SITE" -->
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES NEWS QUI SONT DANS LE DOSSIER /NEWS ET PAS AILLEURS DANS LE SITE" -->
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES NEWS QUI SONT DANS LE DOSSIER /NEWS ET PAS AILLEURS DANS LE SITE" -->
+
+<div class="espacesousslider">
+
+</div>
+  <tal:content-core >
+        <div tal:content="structure context/content/output" id="content">
+            Body text
+        </div>
+    </tal:content-core>
+
+<div id="bloc-news-events">
+<!-- début portlet actus -->
+<div  id="bloc-news" tal:define="navroot context/@@plone_portal_state/navigation_root_url">
+<tal:news define="results python:request.get('news',
+                                                here.portal_catalog.searchResults(portal_type='News Item',
+                                                path={'query': navroot+'/news', 'depth': 2},
+                                                sort_on='Date',
+                                                sort_order='reverse',
+                                                review_state='published')[:3]);">
+<dl class="portlet portletNews"
+    i18n:domain="plone">
+
+   
+    <dt class="portletHeader">
+        <span class="portletTopLeft titre_portletp1">
+          Actualité de l'école  <a href="./news/aggregator/rss"><img src="images/rss2.png" 
+                    tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++ageliaco.schoolkit/images/rss2.png" 
+                    width="15" height="15" style="float : right; margin-top : -20px"/></a>
+        </span>
+        <span class="portletTopRight"></span>
+
+
+<!--AJOUT D'UNE TABLE POUR ARRIVER A AJOUTER LE LIEN RSS A DROITE ... 
+<table width=100%  style="margin-bottom:2px;">     
+<tr>
+
+<td  class="titre_portletp1">
+<span>
+Actualité de l'école</span>
+<span class="portletTopRight"></span>
+</td>
+<td align=right >
+<a href="./news/aggregator/rss">
+<img src="images/rss2.png" tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++ageliaco.schoolkit/images/rss2.png" width="15" height="15" />
+</a>
+</td>
+
+</tr>
+</table>
+-->
+    </dt>
+
+
+
+
+
+    <tal:block  tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                                plone_view context/@@plone;
+                                getIcon nocall:plone_view/getIcon;"
+                    tal:repeat="obj results">
+
+
+    <dd tal:define="oddrow repeat/obj/odd;
+                    item_icon python:getIcon(obj);"
+        tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'"
+        >
+
+      <!--J'ENLEVE L'AFFICHAGE DE L'ICONE DEVANT CHAQUE ACTU ET J'AJOUTE L'IMAGE ASSOCIEE A CHAQUE ACTU (FACULTATIVE)
+            <img tal:replace="structure item_icon/html_tag" />
+-->
+<table>
+<tr valign=top>
+<td width="70px" align=center>
+
+
+  <a href="#"
+      tal:attributes="href obj/getURL;
+      title obj/Description">
+
+<img src="" alt=""
+ tal:define="item_object obj/getObject;"
+ tal:condition="exists:item_object/image_tile"
+ tal:replace="structure python: path('nocall:item_object/tag')(scale='tile',
+ css_class='tile Image')" />
+   </a>
+
+
+</td>
+<td width="10px">
+</td>
+<td class="titre_actu">
+
+
+
+
+
+
+
+
+
+   <a href="#" 
+           class="tile"
+                    tal:attributes="href obj/getURL;
+                           title obj/Description">
+            <span class="titre_actu" tal:replace="obj/pretty_title_or_id">
+            </span >
+   </a>
+
+
+</td>
+</tr>
+</table>
+
+    </dd>
+
+    </tal:block>
+
+
+
+
+    <dd class=""
+         >
+        <span></span>
+  <span class="lien_ttesactus">
+        <a href="./news/aggregator">
+         Plus d'actus ...
+        </a>
+</span>
+        <span class="portletBottomRight"></span>
+    </dd>
+  
+</dl>
+</tal:news>
+
+</div>
+<!--fin portlet actus-->
+
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES EVENTS QUI SONT DANS LE BON DOSSIER /EVENTS ET PAS AILLEURS DANS LE SITE" -->
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES EVENTS QUI SONT DANS LE BON DOSSIER /EVENTS ET PAS AILLEURS DANS LE SITE" -->
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES EVENTS QUI SONT DANS LE BON DOSSIER /EVENTS ET PAS AILLEURS DANS LE SITE" -->
+<!-- JMD->SR : ICI IL FAUT CHERCHER LES EVENTS QUI SONT DANS LE BON DOSSIER /EVENTS ET PAS AILLEURS DANS LE SITE" -->
+
+
+
+<!-- début portlet événs-->
+<div id="bloc-events">
+<tal:events define="path context/@@plone_portal_state/navigation_root_path;
+                        resultE python:request.get('event',
+                           context.portal_catalog.searchResults(dict(
+                            portal_type='Event',
+                            end={'query': context.ZopeTime(),
+                                 'range': 'min'},
+                            sort_on='start',                          
+                            path=path))
+                         [:4] ); ">
+<dl class="portlet portletEvents"
+    i18n:domain="plone">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft titre_portletp1">
+          Prochains événements  <a href="./events/aggregator/rss"><img src="images/rss2.png" 
+                    tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++ageliaco.schoolkit/images/rss2.png" 
+                    width="15" height="15" style="float : right; margin-top : -20px"/></a>
+        </span>
+        <span class="portletTopRight"></span>
+
+
+<!--AJOUT D'UNE TABLE POUR ARRIVER A AJOUTER LE LIEN RSS A DROITE ... 
+<table width=100%  style="margin-bottom:2px;">     
+<tr>
+
+<td  class="titre_portletp1">
+<span>
+Prochains événements</span>
+<span class="portletTopRight"></span>
+</td>
+<td align=right >
+
+
+
+<a href="./events/espace-de-publication-d-evenements/agenda/ics_view">
+<img src="images/rss2.png" 
+    tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++ageliaco.schoolkit/images/rss2.png" 
+    width="15" height="15" />
+</a>
+</td>
+
+</tr>
+</table>
+
+-->
+
+
+        <span class="portletTopLeft"></span>
+
+
+        <span class="portletTopRight">
+            </span>
+    </dt>
+
+    <tal:event tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                            DateTime python:modules['DateTime'].DateTime"
+                tal:repeat="obj resultE">
+    <dd class="portletItem"
+        tal:define="oddrow repeat/obj/odd;
+                    plone_view context/@@plone;
+                    getIcon nocall:plone_view/getIcon;
+                    item_icon python:getIcon(obj);
+                    item_startdate python:toLocalizedTime(obj.start);
+                    item_starttime python:toLocalizedTime(obj.start,time_only=1);
+                    item_enddate python:toLocalizedTime(obj.end);
+                    item_endtime python:toLocalizedTime(obj.end,time_only=1);
+                    item_sametime python: obj.start == obj.end;
+                    item_samedate python: obj.end - obj.start &lt; 1"
+        tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'"
+       >
+        <a href="#"
+           class="titre_eventp1"
+           tal:attributes="href obj/getURL;
+                           title obj/Description">
+            <img tal:replace="structure item_icon/html_tag" />
+            <span tal:replace="obj/pretty_title_or_id">
+             Some Event
+            </span>
+<br>
+        </a>
+
+            <span class="portletItemDetails_eventp1">
+                <span
+                 tal:condition="python: item_sametime"
+                 tal:content="string:${item_startdate} ${item_starttime}"
+                 >
+                May 5
+                </span>
+                <span
+                 tal:condition="python: item_samedate and not item_sametime"
+                 tal:content="string:${item_startdate} ${item_starttime} - ${item_endtime}">
+                May 5
+                </span>
+                <span
+                 tal:condition="python: not item_sametime and not item_samedate"
+                 tal:content="string:${item_startdate} - ${item_enddate}">
+                May 5
+                </span>
+                <span tal:condition="obj/location"> &mdash;
+                    <tal:location content="obj/location">Location</tal:location>
+                </span>
+            </span>
+    </dd>
+    </tal:event>
+
+<!--
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft" style="float:left; margin-left:0;">
+        <a href=""
+           tal:attributes="href string:${portal_url}/events/aggregator/previous/"
+           class="tile"
+           i18n:translate="box_previous_events">
+                Previous events&hellip;
+        </a>
+        </span>
+        <span class="portletBottomRight" style="float:right; margin-right:2em;">
+        <a href=""
+           class="tile"
+           tal:attributes="href string:${portal_url}/events"
+           i18n:translate="box_upcoming_events">
+                Upcoming events&hellip;
+        </a></span>
+    </dd>
+-->
+
+  <dd class=""
+         >
+        <span></span>
+  <span class="lien_ttesactus">
+        <a href="./events/aggregator">
+         Plus d'événements...
+        </a>
+  </span>
+        <span class="p1_events_ical">
+<a href="./events/espace-de-publication-d-evenements/agenda/ics_view">
+<img src="export_ical.png" 
+     tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++ageliaco.schoolkit/images/export_ical.png"
+     width="15" height="15" />
+  Export iCal
+</a>
+
+</span>
+    </dd>
+
+
+
+</dl>
+</tal:events>
+</div>
+<!-- fin portlet événs-->
+</div>
+</metal:content-core>
+
+</body>
+</html>
