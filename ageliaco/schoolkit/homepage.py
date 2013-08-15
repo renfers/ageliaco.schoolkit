@@ -34,7 +34,7 @@ class ldap_cache(object):
     def reset_all(self):
         self.timestamp = datetime.datetime.today()
         registry = getUtility(IRegistry)
-        import pdb; pdb.set_trace()
+        #import pdb; pdb.set_trace()
         server_uri = registry['ageliaco.schoolkit.settings.ISettings.server_uri']
         ldap_manager = registry['ageliaco.schoolkit.settings.ISettings.ldap_manager']
         manager_password = registry['ageliaco.schoolkit.settings.ISettings.manager_password']
@@ -129,31 +129,43 @@ class View(grok.View):
     cours = []
     disciplines = []
     collaborateur = False
-    groupes_info = None
+    groupes_info = {}
     
     def setclasses(self):
         if not self.groupes_info:
-            self.groupes_info = ldap_cache()
-        self.classes = self.groupes_info.classes
-        self.cours = self.groupes_info.cours
-        self.disciplines = self.groupes_info.disciplines
+            self.set_groupInfo()
 
     def classes_cours_disciplines(self):
-        if not self.classes:
-            self.setclasses()
-        classes = []    
-        cours = []    
-        disciplines = []
-        groupes = self.groupes()
-        for groupe in groupes:
-            if groupe in self.classes:
-                classes.append(groupe)
-            if groupe in self.cours:
-                cours.append(groupe)
-            if groupe in self.disciplines:
-                disciplines.append(groupe)
-        return classes, cours, disciplines
+        if not self.cours:
+            self.set_groupInfo()
+        return self.classes, self.cours, self.disciplines
 
+    def set_groupInfo(self):
+        member = self.member()
+        gr_info = ()
+        if member.hasProperty('memberOf'):
+            gr_info = member.getProperty('memberOf')
+        
+        classes = set()
+        cours = set()
+        disciplines = set()
+        #import pdb; pdb.set_trace()
+        if not gr_info:
+            return
+        for gr in gr_info:
+            groupes = gr.split(',')
+            if groupes[2] == 'ou=COURS':
+                cours.add(groupes[0].split('=')[1])
+            elif groupes[1] == 'ou=CLASSES':
+                classes.add(groupes[0].split('=')[1])
+            elif groupes[1] == 'ou=DISCIPLINES':
+                disciplines.add(groupes[0].split('=')[1])
+        self.cours = list(cours)
+        self.classes = list(classes)
+        self.disciplines = list(disciplines)
+        self.cours.sort()
+        self.classes.sort()
+        self.disciplines.sort()
               
     def isCollaborateur(self):
         return self.collaborateur

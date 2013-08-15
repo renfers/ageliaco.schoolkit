@@ -11,14 +11,20 @@
      <tal:css  tal:define="navroot context/@@plone_portal_state/navigation_root_url">
         <link rel="stylesheet" href="css/schoolkit.css"
          tal:attributes="href string:${navroot}/++resource++ageliaco.schoolkit/css/schoolkit.css"
-         >
+         />
      </tal:css>
     </metal:block1>
     <metal:block2 fill-slot="javascript_head_slot" >
      <tal:js  tal:define="navroot context/@@plone_portal_state/navigation_root_url">
+     
         <script type="text/javascript"  
                 tal:attributes="src string:${navroot}/++resource++ageliaco.schoolkit/javascript/slider.js">
         </script>
+  <script>
+   $(function() {
+    $( "#tabes" ).tabs();
+  });
+  </script>
                 
      </tal:js>
     </metal:block2>
@@ -51,7 +57,6 @@ function timedRefresh() {
 }
 window.onload=timedRefresh
  </script>
-
 
 
 
@@ -327,7 +332,7 @@ Accès direct aux cours</span>
    Bienvenue <span class="name" tal:content="fullname" />
 </tal:with-fullname>
 </h2>
-
+<!--
 <ul tal:define="groups view/groupes">
     <tal:allgroups repeat="group groups">
 
@@ -335,7 +340,7 @@ Accès direct aux cours</span>
     </tal:allgroups>
 </ul>
 
-<!--
+
 <p > Cliquer sur le lien ci-dessous pour accéder directement à l'espace de partage de la discipline : <a href="./espace-pedagogique/disciplines/maths">Mathématiques</a></p>
 
 <p> Cliquer sur le lien ci-dessous pour accéder directement à l'espace de partage du cours </p>
@@ -346,6 +351,24 @@ Accès direct aux cours</span>
 <p>4Ma1.DF03</p>
 
 -->
+<div id="tabes">
+  <ul>
+    <li><a href="#tabes-1">Nunc tincidunt</a></li>
+    <li><a href="#tabes-2">Proin dolor</a></li>
+    <li><a href="#tabes-3">Aenean lacinia</a></li>
+  </ul>
+  <div id="tabes-1">
+    <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+  </div>
+  <div id="tabes-2">
+    <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+  </div>
+  <div id="tabes-3">
+    <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+    <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+  </div>
+</div>
+
 
 <div class="vitrinetexte"  tal:define="classes_cours_disciplines view/classes_cours_disciplines;
                                         classes python:classes_cours_disciplines[0];
@@ -353,7 +376,7 @@ Accès direct aux cours</span>
                                         disciplines   python:classes_cours_disciplines[2]">
 
 
-<tal:classe condition="python: classes==0">
+<tal:classe condition="python: len(classes)>0">
 <h2>Classe</h2>
 <ul>
 <tal:groupes repeat="classe classes">

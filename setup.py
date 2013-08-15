@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1'
+version = '0.2'
 
 setup(name='ageliaco.schoolkit',
       version=version,
@@ -34,6 +34,7 @@ setup(name='ageliaco.schoolkit',
             "five.grok", 
             "z3c.jbot", 
             "collective.monkeypatcher",
+            "eelplone.policy",
           # -*- Extra requirements: -*-
       ],
       entry_points="""
